@@ -10,19 +10,11 @@ export const runtime = 'edge';
 const app = new Hono().basePath('/api');
 
 app
-    .get('/hello',
-        clerkMiddleware(), 
+    .get('/hello', 
         (c) => {
-            const auth = getAuth(c);
-
-            if (!auth?.userId) {
-                return c.json({
-                    error: "Unauthorized"});
-            }
             
             return c.json({
-                message: 'Hello, World!',
-                userId: auth.userId,
+                message: 'Hello, World!'
             });
     });
 
